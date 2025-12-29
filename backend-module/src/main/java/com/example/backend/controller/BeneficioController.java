@@ -75,5 +75,18 @@ public class BeneficioController {
 			response = new Response(0, e.getMessage());
 			return ResponseEntity.ok().body(response);
 		}
-	}	
+	}
+	
+	@CrossOrigin(origins="*")
+	@PostMapping( value="/transferirBeneficio", consumes=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Response> transfer(@RequestBody BeneficioRequest request){        		
+		Response response;
+		try {
+			response = beneficioService.transfer(request);
+			return ResponseEntity.ok().body(response);
+		} catch (Exception e) {
+			response = new Response(0, e.getMessage());
+			return ResponseEntity.ok().body(response);
+		} 
+	}
 }

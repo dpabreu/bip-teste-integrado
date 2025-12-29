@@ -127,7 +127,7 @@ angular.module('App').controller('Controller', ['$http','$scope',
             $('#create-modal').modal('hide');
             $('#view-modal').modal('hide');
             $('#transfer-modal').modal('hide');
-            
+
             $scope.beneficio = {};
         }
 
@@ -135,7 +135,27 @@ angular.module('App').controller('Controller', ['$http','$scope',
 
             console.log("Beneficio from selecionado: " + $scope.beneficioFromSelecionado.id);
             console.log("Beneficio to selecionado: " + $scope.beneficioToSelecionado.id);
+            $scope.beneficio.fromId = $scope.beneficioFromSelecionado.id;
+            $scope.beneficio.toId = $scope.beneficioToSelecionado.id;
 
+            $http({
+                method: 'POST',
+                url: urlBase + '/transferirBeneficio',
+                data: $scope.beneficio
+            }).then(function (response){
+
+                if(response.data.codigo == 1){
+                    alert("Sucesso: " + response.data.msg);
+                    $('#transfer-modal').modal('hide');
+                    $scope.beneficio = {};
+                    $scope.readAll();
+                } else {
+                    alert("Erro: " + response.data.msg);
+                }
+                
+            },function myError(response) {
+                $scope.errorResponse(response);
+            });
         }
 
         $scope.readAll();

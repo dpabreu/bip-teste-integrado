@@ -86,14 +86,14 @@ public class BeneficioService {
 	}
 	
 	@Transactional
-    public void transfer(Long fromId, Long toId, BigDecimal amount) {
-        Beneficio from = beneficioRepository.findById(fromId)
+    public Response transfer(BeneficioRequest request) throws Exception {
+        Beneficio from = beneficioRepository.findById(request.getFromId())
                 .orElseThrow(() -> new IllegalArgumentException("Benefício origem não encontrado"));
 
-        Beneficio to = beneficioRepository.findById(toId)
+        Beneficio to = beneficioRepository.findById(request.getToId())
                 .orElseThrow(() -> new IllegalArgumentException("Benefício destino não encontrado"));
 
-        
+        BigDecimal amount = new BigDecimal(request.getQuantia().replace(",", "."));
         if(amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
         	throw new IllegalArgumentException("Valor da transferência inválido.");
         }
@@ -102,10 +102,16 @@ public class BeneficioService {
         	throw new IllegalArgumentException("Saldo insuficiente.");
         }
         
-        from.setValor(from.getValor().subtract(amount));
-        to.setValor(to.getValor().add(amount));
-
-        beneficioRepository.save(from);
-        beneficioRepository.save(to);
+        try {
+	        from.setValor(from.getValor().subtract(amount));
+	        to.setValor(to.getValor().add(amount));
+	
+	        beneficioRepository.save(from);
+	        beneficioRepository.save(to);
+        } catch (Exception e) {
+        	throw new Exception("Erro ao transferir benefício: " + e);
+        }
+        
+        return new Response(1, "Transferência realizada com sucesso.");
     }	
 }
