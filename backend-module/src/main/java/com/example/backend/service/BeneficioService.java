@@ -22,7 +22,7 @@ public class BeneficioService {
 	public List<BeneficioResponse> readAll(){
 		
 		List<BeneficioResponse> response = new ArrayList<BeneficioResponse>();
-		List<Beneficio> beneficios = beneficioRepository.findAllAtivoTrueOrderByNome();
+		List<Beneficio> beneficios = beneficioRepository.findByAtivoTrueOrderByNome();
 		
 		beneficios.forEach(beneficio -> response.add(new BeneficioResponse(beneficio)));
 		
@@ -30,14 +30,15 @@ public class BeneficioService {
 	}
 	
 	public BeneficioResponse readById(Long id) {
-		return new BeneficioResponse(beneficioRepository.findByIdAndAtivo(id));
+		return new BeneficioResponse(beneficioRepository.findById(id).get());
 	}
 	
 	@Transactional
 	public Response create(BeneficioRequest request) throws Exception {
 		
 		try {
-			beneficioRepository.save(new Beneficio(request));
+			Beneficio beneficio = new Beneficio(request);
+			beneficioRepository.save(beneficio);
 		} catch (Exception e) {
 			throw new Exception("Erro ao criar registro: " + e);
 		}
@@ -53,6 +54,8 @@ public class BeneficioService {
 			record.setNome(request.getNome());
 			record.setDescricao(request.getDescricao());
 			record.setValor(request.getValor());
+			record.setAtivo(true);
+			record.setVersion(0L);
 			
 			beneficioRepository.save(record);
 		} catch (Exception e) {

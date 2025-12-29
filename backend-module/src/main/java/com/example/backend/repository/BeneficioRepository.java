@@ -8,7 +8,5 @@ import com.example.backend.model.Beneficio;
 
 public interface BeneficioRepository extends JpaRepository<Beneficio, Long> {
 
-	public Beneficio findByIdAndAtivo(Long id);
-	
-	public List<Beneficio> findAllAtivoTrueOrderByNome();
+	public List<Beneficio> findByAtivoTrueOrderByNome();
 }
