@@ -1,13 +1,11 @@
 package com.example.backend.request;
 
-import java.math.BigDecimal;
-
 public class BeneficioRequest {
 
 	private Long id;
 	private String nome;
 	private String descricao;
-	private BigDecimal valor;
+	private String valor;
 	
 	public Long getId() {
 		return id;
@@ -27,10 +25,10 @@ public class BeneficioRequest {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public BigDecimal getValor() {
+	public String getValor() {
 		return valor;
 	}
-	public void setValor(BigDecimal valor) {
+	public void setValor(String valor) {
 		this.valor = valor;
 	}
 }

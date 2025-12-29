@@ -1,5 +1,6 @@
 package com.example.backend.service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,9 @@ public class BeneficioService {
 	public Response create(BeneficioRequest request) throws Exception {
 		
 		try {
-			Beneficio beneficio = new Beneficio(request);
+			Beneficio beneficio = new Beneficio(request.getId(), request.getNome(),
+					request.getDescricao(), 
+					new BigDecimal(request.getValor().replace(",", ".")));
 			beneficioRepository.save(beneficio);
 		} catch (Exception e) {
 			throw new Exception("Erro ao criar registro: " + e);
@@ -45,6 +48,8 @@ public class BeneficioService {
 		
 		return new Response(1, "Registro incluído com sucesso.");
 	}
+
+
 	
 	@Transactional
 	public Response update(BeneficioRequest request) throws Exception {
@@ -53,7 +58,7 @@ public class BeneficioService {
 			Beneficio record = beneficioRepository.findById(request.getId()).get();
 			record.setNome(request.getNome());
 			record.setDescricao(request.getDescricao());
-			record.setValor(request.getValor());
+			record.setValor(new BigDecimal(request.getValor().replace(",", ".")));
 			record.setAtivo(true);
 			record.setVersion(0L);
 			
@@ -62,7 +67,7 @@ public class BeneficioService {
 			throw new Exception("Erro ao atualizar registro: " + e);
 		}
 		
-		return new Response(1, "Registro atualziado com sucesso.");
+		return new Response(1, "Registro atualizado com sucesso.");
 	}
 	
 	@Transactional
@@ -79,4 +84,28 @@ public class BeneficioService {
 		
 		return new Response(1, "Registro excluído com sucesso.");
 	}
+	
+	@Transactional
+    public void transfer(Long fromId, Long toId, BigDecimal amount) {
+        Beneficio from = beneficioRepository.findById(fromId)
+                .orElseThrow(() -> new IllegalArgumentException("Benefício origem não encontrado"));
+
+        Beneficio to = beneficioRepository.findById(toId)
+                .orElseThrow(() -> new IllegalArgumentException("Benefício destino não encontrado"));
+
+        
+        if(amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
+        	throw new IllegalArgumentException("Valor da transferência inválido.");
+        }
+        
+        if(from.getValor().compareTo(amount) < 0) {
+        	throw new IllegalArgumentException("Saldo insuficiente.");
+        }
+        
+        from.setValor(from.getValor().subtract(amount));
+        to.setValor(to.getValor().add(amount));
+
+        beneficioRepository.save(from);
+        beneficioRepository.save(to);
+    }	
 }

@@ -8,6 +8,8 @@ angular.module('App').controller('Controller', ['$http','$scope',
         }
 
         $scope.Beneficios = [];
+        $scope.beneficioFromSelecionado = {};
+        $scope.beneficioToSelecionado = {};
         
         $http.defaults.headers.common['Authorization'] = 'Basic ' + btoa('amas:amas');
         $http.defaults.headers.common['Content-Type'] = 'application/json';
@@ -20,6 +22,30 @@ angular.module('App').controller('Controller', ['$http','$scope',
                 url: urlBase+"/listaBeneficios"
             }).then(function (response){
                 $scope.Beneficios = response.data;
+                $scope.carregaFromList();
+                $scope.carregaToList();
+            },function myError(response) {
+                $scope.errorResponse(response);
+            });            
+        }
+
+        $scope.carregaFromList = function(){
+            $http({
+                method: 'POST',
+                url: urlBase+"/listaBeneficios"
+            }).then(function (response){  
+                $scope.fromList = response.data;		                
+            },function myError(response) {
+                $scope.errorResponse(response);
+            });            
+        }
+
+        $scope.carregaToList = function(){
+            $http({
+                method: 'POST',
+                url: urlBase+"/listaBeneficios"
+            }).then(function (response){  
+                $scope.toList = response.data;		                
             },function myError(response) {
                 $scope.errorResponse(response);
             });            
@@ -100,8 +126,16 @@ angular.module('App').controller('Controller', ['$http','$scope',
         $scope.cancelar = function(){
             $('#create-modal').modal('hide');
             $('#view-modal').modal('hide');
-
+            $('#transfer-modal').modal('hide');
+            
             $scope.beneficio = {};
+        }
+
+        $scope.transferir = function(){
+
+            console.log("Beneficio from selecionado: " + $scope.beneficioFromSelecionado.id);
+            console.log("Beneficio to selecionado: " + $scope.beneficioToSelecionado.id);
+
         }
 
         $scope.readAll();

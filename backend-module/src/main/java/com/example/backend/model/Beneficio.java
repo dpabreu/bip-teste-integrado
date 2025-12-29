@@ -2,8 +2,6 @@ package com.example.backend.model;
 
 import java.math.BigDecimal;
 
-import com.example.backend.request.BeneficioRequest;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -38,11 +36,11 @@ public class Beneficio {
 		
 	}
 	
-	public Beneficio(BeneficioRequest request) {
-		this.id = request.getId();
-		this.nome = request.getNome();
-		this.descricao = request.getDescricao();
-		this.valor = request.getValor();
+	public Beneficio(Long id, String nome, String descricao, BigDecimal valor) {
+		this.id = id;
+		this.nome = nome;
+		this.descricao = descricao;
+		this.valor = valor;
 		this.ativo = true;
 		this.version = 0L;
 	}
