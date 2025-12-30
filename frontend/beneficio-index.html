@@ -156,7 +156,7 @@
                                     <div class="form-group col-md-4">
                                         <label for="from-list">Beneficio Origem</label>
                                         <select class="pure-input-1-2 form-control" id="from-list" ng-options="b.nome for b in controller.fromList track by b.id" 
-                                                ng-model="controller.beneficioFromSelecionado">
+                                                ng-model="controller.beneficioFromSelecionado" ng-change="controller.validaBeneficioSelecionado()">
                                             <option value="">Selecione</option>
                                         </select>		
                                     </div>
@@ -164,7 +164,7 @@
                                     <div class="form-group col-md-4">
                                         <label for="to-list">Beneficio Destino</label>
                                         <select class="pure-input-1-2 form-control" id="to-list" ng-options="b.nome for b in controller.toList track by b.id" 
-                                                ng-model="controller.beneficioToSelecionado">
+                                                ng-model="controller.beneficioToSelecionado" ng-change="controller.validaBeneficioSelecionado()">
                                             <option value="">Selecione</option>
                                         </select>		
                                     </div>
@@ -212,7 +212,7 @@
                     <div class="col-md-6">
                         <a  href="#" data-toggle="modal" data-target="#create-modal" class="btn btn-primary pull-right h2">Novo</a>
                         <a  href="#" data-toggle="modal" data-target="#transfer-modal" class="btn btn-primary pull-right h2">Transferir</a>
-                    </div>    
+                    </div>
                 </div> <!-- /#top -->
             
                 <hr />

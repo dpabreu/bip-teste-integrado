@@ -179,6 +179,17 @@ angular.module('App').controller('Controller', ['$http','$scope',
             return true;
         }
 
+        $scope.validaBeneficioSelecionado = function(){
+            if($scope.beneficioFromSelecionado.id == $scope.beneficioToSelecionado.id){
+                alert("O benefício ORIGEM não pode ser o mesmo benefício DESTINO e vice-versa.");
+                $scope.beneficioFromSelecionado = {};
+                $scope.beneficioToSelecionado = {};
+                return;
+            }
+
+            return true;
+        }
+
         $scope.ordenar = function(keyname){
             $scope.sortKey = keyname;
             $scope.reverse = !$scope.reverse;
