@@ -1,8 +1,0 @@
-com\example\backend\controller\BeneficioController.class
-com\example\backend\request\BeneficioRequest.class
-com\example\backend\repository\BeneficioRepository.class
-com\example\backend\response\Response.class
-com\example\backend\response\BeneficioResponse.class
-com\example\backend\service\BeneficioService.class
-com\example\backend\BackendApplication.class
-com\example\backend\model\Beneficio.class
