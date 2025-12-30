@@ -1,6 +1,6 @@
 # bip-teste-integrado
-Desafio Técnico – API de Benefícios
-Visão Geral
+Desafio Técnico - BIP Brasil – API de Benefícios
+# Visão Geral
 
 Este projeto foi desenvolvido como parte de um desafio técnico com o objetivo de demonstrar conhecimentos em backend Java, frontend, banco de dados, boas práticas, testes automatizados e documentação de APIs.
 
@@ -22,7 +22,7 @@ Implementação de testes unitários com JUnit e Mockito
 
 Documentação da API com Swagger (OpenAPI)
 
-Banco de Dados
+# Banco de Dados
 
 SGBD: PostgreSQL
 
@@ -32,8 +32,8 @@ Tabela principal: beneficio
 
 A API utiliza JPA/Hibernate para o mapeamento objeto-relacional da entidade Beneficio.
 
-Backend – Spring Boot
-Tecnologias utilizadas
+# Backend – Spring Boot
+# Tecnologias utilizadas
 
 Java 17
 
@@ -77,7 +77,7 @@ Risco de lost update
 
 Falta de controle transacional
 
-Conversão do EJB Legado
+# Conversão do EJB Legado
 
 O desafio incluía um EJB Stateless legado, contendo falhas de negócio e concorrência.
 Esse EJB foi convertido para um Service Spring Boot, respeitando as boas práticas atuais:
@@ -122,7 +122,7 @@ Garantia de persistência correta
 
 Os testes são isolados, sem subir o contexto Spring, focando exclusivamente na regra de negócio.
 
-Documentação da API – Swagger
+# Documentação da API – Swagger
 
 A API foi documentada utilizando Swagger/OpenAPI.
 
@@ -135,11 +135,11 @@ ou
 
 http://localhost:8080/swagger-ui/index.html
 
-Frontend – AngularJS
+# Frontend – AngularJS
 
 O frontend foi desenvolvido em AngularJS por simplicidade e rapidez na entrega do desafio, mantendo comunicação desacoplada via API REST. Em um cenário produtivo, a escolha recomendada seria Angular (2+) ou outro framework moderno.
 
-Características
+# Características
 
 Consome a API REST do Spring Boot
 
@@ -147,15 +147,15 @@ Executado de forma independente
 
 Comunicação via HTTP
 
-Execução do frontend
+# Execução do frontend
 
 Foi utilizado o http-server para servir a aplicação AngularJS.
 
 Instalação do servidor HTTP:
 npm install -g http-server
 
-Subir o frontend:
-cd caminho/do/frontend
+# Subir o frontend:
+cd ../bip-teste-integrado/frontend
 http-server -p 4200
 
 
@@ -163,15 +163,17 @@ A aplicação ficará disponível em:
 
 http://localhost:4200
 
-Como Executar a Aplicação
-Banco de Dados
+# Como Executar a Aplicação
+# Banco de Dados
 
 Criar o banco desafio-bip no PostgreSQL
 
 Configurar usuário e senha em application.properties.
 
-Backend
-mvn clean install
+# Backend
+cd ../bip-teste-integrado/backend-module
+mvn clean install -DskipTests
+
 mvn spring-boot:run
 
 
@@ -180,9 +182,9 @@ API disponível em:
 http://localhost:8080
 
 
-Considerações Finais
+# Considerações Finais
 
-Este projeto demonstra:
+# Este projeto demonstra:
 
 Domínio de Java moderno (Java 17)
 
