@@ -92,7 +92,7 @@ Possibilidade de lost update
 
 Falta de tratamento adequado de exceções
 
-Solução aplicada:
+# Solução aplicada:
 
 Uso de @Transactional
 
@@ -102,7 +102,7 @@ Uso de Repository (Spring Data JPA)
 
 Testes unitários garantindo o comportamento correto
 
-Testes Automatizados
+# Testes Automatizados
 
 Foram implementados testes unitários utilizando:
 
@@ -152,10 +152,12 @@ Comunicação via HTTP
 Foi utilizado o http-server para servir a aplicação AngularJS.
 
 Instalação do servidor HTTP:
+
 npm install -g http-server
 
 # Subir o frontend:
 cd ../bip-teste-integrado/frontend
+
 http-server -p 4200
 
 
@@ -172,6 +174,7 @@ Configurar usuário e senha em application.properties.
 
 # Backend
 cd ../bip-teste-integrado/backend-module
+
 mvn clean install -DskipTests
 
 mvn spring-boot:run
