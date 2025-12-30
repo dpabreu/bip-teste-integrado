@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.backend.model.Beneficio;
 import com.example.backend.repository.BeneficioRepository;
 import com.example.backend.request.BeneficioRequest;
+import com.example.backend.request.TransferirBeneficioRequest;
 import com.example.backend.response.BeneficioResponse;
 import com.example.backend.response.Response;
 
@@ -86,7 +87,7 @@ public class BeneficioService {
 	}
 	
 	@Transactional
-    public Response transfer(BeneficioRequest request) throws Exception {
+    public Response transfer(TransferirBeneficioRequest request) throws Exception {
         Beneficio from = beneficioRepository.findById(request.getFromId())
                 .orElseThrow(() -> new IllegalArgumentException("Benefício origem não encontrado"));
 

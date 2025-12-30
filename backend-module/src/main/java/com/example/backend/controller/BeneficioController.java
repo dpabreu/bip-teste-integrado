@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.request.BeneficioRequest;
+import com.example.backend.request.TransferirBeneficioRequest;
 import com.example.backend.response.BeneficioResponse;
 import com.example.backend.response.Response;
 import com.example.backend.service.BeneficioService;
@@ -79,7 +80,7 @@ public class BeneficioController {
 	
 	@CrossOrigin(origins="*")
 	@PostMapping( value="/transferirBeneficio", consumes=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Response> transfer(@RequestBody BeneficioRequest request){        		
+	public ResponseEntity<Response> transfer(@RequestBody TransferirBeneficioRequest request){        		
 		Response response;
 		try {
 			response = beneficioService.transfer(request);

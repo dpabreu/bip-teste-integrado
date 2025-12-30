@@ -1,2 +1,9 @@
-C:\Daniel\bip-teste-integrado\backend-module\src\main\java\com\example\backend\BackendApplication.java
-C:\Daniel\bip-teste-integrado\backend-module\src\main\java\com\example\backend\BeneficioController.java
+C:\Daniel\trabalhos\bip-teste-integrado\backend-module\src\main\java\com\example\backend\controller\BeneficioController.java
+C:\Daniel\trabalhos\bip-teste-integrado\backend-module\src\main\java\com\example\backend\config\SwaggerConfig.java
+C:\Daniel\trabalhos\bip-teste-integrado\backend-module\src\main\java\com\example\backend\response\Response.java
+C:\Daniel\trabalhos\bip-teste-integrado\backend-module\src\main\java\com\example\backend\repository\BeneficioRepository.java
+C:\Daniel\trabalhos\bip-teste-integrado\backend-module\src\main\java\com\example\backend\BackendApplication.java
+C:\Daniel\trabalhos\bip-teste-integrado\backend-module\src\main\java\com\example\backend\model\Beneficio.java
+C:\Daniel\trabalhos\bip-teste-integrado\backend-module\src\main\java\com\example\backend\request\BeneficioRequest.java
+C:\Daniel\trabalhos\bip-teste-integrado\backend-module\src\main\java\com\example\backend\response\BeneficioResponse.java
+C:\Daniel\trabalhos\bip-teste-integrado\backend-module\src\main\java\com\example\backend\service\BeneficioService.java
